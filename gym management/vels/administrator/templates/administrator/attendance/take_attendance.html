@@ -1,0 +1,254 @@
+{%extends 'main.html'%} {%block content%} {% include 'attendance_navbar.html'%}
+
+<script>
+    var member_id = ""
+
+    function setmember(id, name, expiry_package) {
+        member_id = id
+        document.getElementById("member_name").innerHTML = name
+        document.getElementById("exampleModalLabel").innerHTML = name
+
+        document.getElementById("A_expiry_package").innerHTML = expiry_package
+        document.getElementById("P_expiry_package").innerHTML = expiry_package
+    }
+
+    function return_memberid() {
+        return member_id
+    }
+</script>
+<div class="container text-center ">
+    <h3>{{attendance.date}}</h3>
+    <!-- <div class="container "> -->
+    <div class="row">
+        <div class="col-5 ">
+            <div class="navbar">
+                <!-- <div class="container-fluid">  -->
+                <h5 class="">{{attendance_date}}</h5>
+                <!-- <h5 class=""> Present members</h5> -->
+                <!-- <form  class="d-flex" method="post" action="/take_attendance">   
+            {% csrf_token %}
+            <button type="submit" class="btn btn-primary">
+              Absentees not updated  <span class="badge bg-dark">{{absentees_count}}</span>
+            </button>
+          </form> -->
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <table class="table text-center table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Presented <span class="badge bg-secondary">{{present_count}}</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for member in present_members%}
+                            <tr data-bs-toggle="modal" data-bs-target="#Absentees" onclick="setmember('{{member.id}}','{{member.name}}','{{member.expiry}}')">
+                                <td>{{member.memberId}}</td>
+                                <td>{{member}}</td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col">
+                    <table class="table text-center table-hover">
+                        <thead>
+
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Absentees <span class="badge bg-secondary">{{absentees_count}}</span></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {%for member in absentees%}
+                            <tr data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="setmember('{{member.id}}','{{member.name}}','{{member.expiry}}')">
+                                <td>{{member.memberId}}</td>
+
+                                <td>
+                                    {{member}}
+                                </td>
+                            </tr>
+                            {%endfor%}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="col">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-sm">
+
+
+                        <ul class="nav nav-pills nav-fill h6">
+
+                            <li class="nav-item m-1 ">
+                                {%if page_name == "Take attendance to all"%}
+                                <a class="nav-link active  " aria-current="page" href="/take_attendance_all"> Take attendance to all
+                  <span class="badge rounded-pill bg-danger">{{count.attendance.all_shift}}</span>  
+                </a> {%else%}
+                                <a class="nav-link  " href="/take_attendance_all">Take attendance to all 
+                  <span class="badge rounded-pill bg-danger">{{count.attendance.all_shift}}</span>
+                </a> {%endif%}
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+
+
+                    <div class="col">
+
+                        <form class="d-flex" method="post" action="/take_attendance">
+                            {% csrf_token %}
+                            <input class="form-control me-2" type="search" placeholder="{{now_shift}} shift to {{update}} update." aria-label="Search" name="queries" autocomplete="off">
+                            <!-- <button type="submit" class="btn bg-info" id="search_nvaber" >Search </button>               -->
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+            <table class="table ">
+                <thead>
+                    <tr>
+                        <th scope="col">Id </th>
+                        <!-- <th scope="col">Expiry date</th> -->
+                        <th scope="col">Names</th>
+                        <th scope="col" colspan="2">Attendance</th>
+                        <th scope="col">Status</th>
+
+                    </tr>
+                </thead>
+                <tbody class="overflow-scroll">
+                    <!-- https://getbootstrap.com/docs/5.0/utilities/overflow/ -->
+                    {%for member in members%}
+                    <!-- <tr  onclick="window.location='choice_attendance/{{member.id}}/'" > -->
+                    <tr>
+
+                        <td>
+                            {{member.memberId}}
+                        </td>
+                        <!-- <td>{{member.expiry}}</td> -->
+
+                        <td>
+                            <a href="member/{{member.id}}/" class="btn ">
+                                <h5> {{member.name}} </h5>
+                            </a>
+                        </td>
+                        {%if page_name == "Take attendance"%}
+                        <td>
+                            <a class="btn bg-success" href="choice_attendance/P_{{member.id}}_today/" role="button">
+                                <img id="" src="/static/icons/check2.svg" alt="p btn">
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn bg-danger " href="choice_attendance/A_{{member.id}}_today/" role="button">
+                                <img id="" src="/static/icons/x-lg.svg" alt="x btn">
+                            </a>
+                        </td>
+                        {%else%}
+
+
+                        <td>
+                            <a class="btn bg-success" href="choice_attendance/P_{{member.id}}_all/" role="button">
+                                <img id="" src="/static/icons/check2.svg" alt="p btn">
+                            </a>
+                        </td>
+                        <td>
+                            <a class="btn bg-danger " href="choice_attendance/A_{{member.id}}_all/" role="button">
+                                <img id="" src="/static/icons/x-lg.svg" alt="x btn">
+                            </a>
+                        </td>
+                        {%endif%}
+
+
+
+
+
+                        <td><span class="m-1 badge bg-{{member.color}}">{{member.color_message}}</span></td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+
+
+
+    </div>
+    <!-- </div> -->
+</div>
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="member_name">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h4 id="P_expiry_package">
+
+                    Expiry package date
+                </h4>
+            </div>
+            <div class="modal-footer">
+                {%if page_name == "Take attendance"%}
+                <a href="choice_attendance/" onclick="location.href=this.href+'P_'+member_id+'_today/';return false;" class="btn btn-success" data-bs-dismiss="modal"> Presented</a>
+                {%else%}
+                <a href="choice_attendance/" onclick="location.href=this.href+'P_'+member_id+'_all/';return false;" class="btn btn-success" data-bs-dismiss="modal"> Presented</a>
+                {%endif%}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- Absentees -->
+<div class="modal fade" id="Absentees" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body">
+                <h4 id="A_expiry_package"> Expiry package date</h4>
+
+            </div>
+            <div class="modal-footer">
+                {%if page_name == "Take attendance"%}
+
+                <a href="choice_attendance/" onclick="location.href=this.href+'A_'+member_id+'_today/';return false;" class="btn btn-danger" data-bs-dismiss="modal"> Absentees</a>
+                {%else%}
+                <a href="choice_attendance/" onclick="location.href=this.href+'A_'+member_id+'_all/';return false;" class="btn btn-danger" data-bs-dismiss="modal"> Absentees</a>
+
+                {%endif%}
+
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

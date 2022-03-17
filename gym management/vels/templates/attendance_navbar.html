@@ -1,0 +1,64 @@
+<nav class="navbar m-1   navbar_attendance ">
+  <div class="container-fluid">
+    <h3 class="navbar " href="/">{{page_name}}</h3>
+    <div class="d-flex">
+
+
+
+      <ul class="nav nav-pills nav-fill h6">
+
+
+
+        <li class="nav-item m-1 ">
+          {%if page_name == "Attendance" or page_name == "Attendance to all"%}
+          <a class="nav-link active  " aria-current="page" href="/attendance_home"> Attendance 
+          </a>
+          {%else%}
+          <a class="nav-link  " href="/attendance_home">Attendance 
+          </a>
+          {%endif%}
+        </li>
+
+
+
+
+        <li class="nav-item m-1 ">
+          {%if page_name == "Absent members"%}
+          <a class="nav-link active  " aria-current="page" href="/absent_members">Absentees
+            <span class="badge rounded-pill bg-danger">{{count.absentees}}</span>  
+          </a>
+          {%else%}
+          <a class="nav-link  " href="/absent_members">Absentees
+            <span class="badge rounded-pill bg-danger">{{count.absentees}}</span>
+          </a>
+          {%endif%}
+        </li>
+
+
+        <li class="nav-item m-1 ">
+          {%if page_name == "Take attendance" or page_name == "Take attendance to all"%}
+          <a class="nav-link active  " aria-current="page" href="/take_attendance"> Take attendance  
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.today}}</span>  
+          </a>
+          {%else%}
+          <a class="nav-link  " href="/take_attendance">Take attendance  
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.today}}</span>
+          </a>
+          {%endif%}
+        </li>
+
+
+
+
+
+
+      </ul>
+
+
+
+
+
+
+    </div>
+  </div>
+</nav>
