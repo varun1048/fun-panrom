@@ -1,0 +1,57 @@
+{%extends 'main.html'%}
+{%block content%}
+<nav class="navbar m-1  ">
+
+    <div class="container-fluid">
+        <h3 class="navbar ">{{page_name}}</h3>
+        <div class="d-flex">
+            <a href="add_note" class="btn btn-primary">Add note</a>
+        </div>
+    </div>
+</nav>
+
+<!-- add notes page -->
+{%if page_name == "Add note" %}
+<div class="container">
+    <form action="/add_note" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Enter Note Title " style="width: 40%;" name="title" required>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" placeholder="content"  name="content" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+
+</div>
+
+
+{%endif%}
+
+
+<!-- notes page -->
+{%if page_name == "Notes" %}
+<div class="row">
+
+    {%for note in notes%}
+    <div class="col">
+
+        <div class="card m-2" style="width: 30rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center">{{note.title}}</h5>
+                {{note.content}}</p>
+                <div class="d-flex justify-content-end">
+                    <a href="delete_note/{{note.id}}/" class="btn btn-danger ">delete</a>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+    {%endfor%}
+</div>
+{%endif%}
+
+
+
+    {%endblock%}

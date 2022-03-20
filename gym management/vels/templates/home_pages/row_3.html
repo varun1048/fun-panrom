@@ -1,0 +1,75 @@
+<div class="col ">
+
+
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/default/enquries.png" class="img-fluid rounded-start m-5" alt="/default/notification.png"
+          style="max-width: 100px;">
+      </div>
+
+      <div class="col-md-8">
+        <div class="card-body">
+          <a class="card-title btn " href="{%url 'enquirys'%}">
+            <h5>Enquirys</h5>
+          </a>
+
+          <ul class="list-group">
+
+            <a href="{%url 'enquirys_expired'%}"
+              class="list-group-item list-group-item-action d-flex justify-content-between">Expired<span>{{count.enquiry.expired}}</span>
+            </a>
+            <a href="{%url 'enquirys_reminder'%}"
+              class="list-group-item list-group-item-action d-flex justify-content-between">
+              Reminder<span>{{count.enquiry.reminder}}</span>
+            </a>
+
+
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<div class="col ">
+
+
+  <div class="card mb-3" style="max-width: 540px;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="/default/Achievement.png" class="img-fluid rounded-start m-5" alt="/default/notification.png"
+          style="max-width: 115px;">
+      </div>
+
+      <div class="col-md-8">
+        <div class="card-body">
+          <a class="card-title btn " href="{%url 'achievement'%}">
+            <h5 > {{count.achievement.month_name}} month Achievement  members
+              
+            </h5>
+          </a>
+          <ul class="list-group">
+
+            
+            {%for member in count.achievement.top_members%}
+
+            <a href="member/{{member.member.id}}/"
+              class="list-group-item list-group-item-action d-flex justify-content-between">
+              {{member.member.name}}<span>{{member.count}}</span>
+            </a>
+              {%endfor%}
+
+          </ul>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

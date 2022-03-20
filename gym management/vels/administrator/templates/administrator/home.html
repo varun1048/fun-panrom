@@ -1,0 +1,283 @@
+{%extends 'main.html'%}
+{%block content%}
+<style>
+  #homepage {
+    border-radius: 17px;
+  }
+</style>
+<div class="container text-center">
+
+  <div class="container p-3">
+    <div class="row">
+      <div class="col">
+      </div>
+      <div class="col-4">
+        <h4>Today</h4>
+        <div class="list-group">
+          {%if count.today.enquirys != 0 %}
+          <a href="{%url 'enquirys_today'%}"
+            class="list-group-item list-group-item-action d-flex justify-content-between">Enquirys to joning
+            <span class="badge bg-danger rounded-pill">{{count.today.enquirys}}</span>
+          </a>
+          {%endif%}
+
+          {%if count.today.enquirys != 0 %}
+          <a href="{%url 'expiry_today'%}"
+            class="list-group-item list-group-item-action d-flex justify-content-between">Expiry packages
+            <span class="badge bg-danger rounded-pill">{{count.today.expiry}}</span>
+          </a>
+          {%endif%}
+
+
+          {%if count.today.hold != 0 %}
+          <a href="{%url 'hold_member_list'%}"
+            class="list-group-item list-group-item-action d-flex justify-content-between">Rejoing today members
+            <span class="badge bg-danger rounded-pill">{{count.today.hold}} </span>
+          </a>
+          {%endif%}
+
+          {%if count.attendance.to_update != 0 %}
+          <a href="{%url 'take_attendance'%}"
+            class="list-group-item list-group-item-action d-flex justify-content-between">Today attendance to update
+            <span class="badge bg-danger rounded-pill">{{count.attendance.to_update}} </span>
+          </a>
+          {%endif%}
+        </div>
+      </div>
+      <div class="col-4">
+
+
+
+        
+        <a href="/members" class="btn">
+          <h3>Members</h3>
+        </a>
+
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Total
+            <span class="badge bg-primary rounded-pill">{{count.members}}</span>
+          </li>
+          <!-- <li class="list-group-item d-flex justify-content-between align-items-center">
+          Holden 
+          <span class="badge bg-primary rounded-pill">{{hold_dict.total}}</span>
+        </li> -->
+        </ul>
+      </div>
+      <div class="col">
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+  <div class="row p-2">
+
+    <div class="col">
+
+      <a href="/enquirys" class="btn">
+        <h3>Enquirys</h3>
+      </a>
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Total
+          <span class="badge bg-primary rounded-pill">{{count.enquiry.today}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Expired
+          <span class="badge bg-primary rounded-pill">{{count.enquiry.expired}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Reminder
+          <span class="badge bg-primary rounded-pill">{{count.enquiry.reminder}}</span>
+        </li>
+      </ul>
+      <!-- <table class="table  ">
+        <thead>
+          <tr>
+            <th scope="col">Total</th>
+            <th scope="col">Today</th>
+            <th scope="col">Expired</th>
+            <th scope="col">Reminder </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="h4">{{enquirys_dict.enquiry_count}}</td>
+            <td>{{enquirys_dict.today}}</td>
+            <td>{{enquirys_dict.expired}}</td>
+            <td>{{enquirys_dict.reminder}}</td>
+          </tr>
+        </tbody>
+      </table> -->
+
+    </div>
+    <div class="col">
+      <th scope="col"><a href="expiry_members" class="btn">
+          <h3>Expiry package </h3>
+      </th></a>
+
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Expired
+          <span class="badge bg-primary rounded-pill">{{count.expiry.expired}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Reminder
+          <span class="badge bg-primary rounded-pill">{{count.expiry.reminder}}</span>
+        </li>
+
+      </ul>
+    </div>
+
+
+
+
+  </div>
+
+
+
+
+  <div class="row">
+
+    <div class="col">
+      <a href="/hold_member" class="btn">
+        <h3>Holden</h3>
+      </a>
+
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Total
+          <span class="badge bg-primary rounded-pill">{{count.hold.total}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Expired
+          <span class="badge bg-primary rounded-pill">{{count.hold.expired}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Reminder
+          <span class="badge bg-primary rounded-pill">{{count.hold.reminder}}</span>
+        </li>
+      </ul>
+
+
+
+      <!-- <div class="col">
+        <a href="/members" class="btn"><h3>Members</h3> </a>
+        <table class="table  ">
+          <thead>
+            <tr>
+              <th scope="col">Total </th>
+              <th scope="col"><a href="expiry_members" class="btn"><h3>Expiry package </h3></th></a>
+              <th scope="col">Holdan </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="h4">{{members}}</td>
+              <td>
+                
+                <table class="table  ">
+                  <thead>
+                    <tr>
+                      <th scope="col">Today</th>
+                      <th scope="col">Expired</th>
+                      <th scope="col">Reminder</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>{{Expiry_deict.today}}</td>
+                      <td>{{Expiry_deict.expired}}</td>
+                      <td>{{Expiry_deict.reminder}}</td>
+
+                    </tr>
+                  </tbody>
+                </table>
+
+                <td class="h4">{{hold_dict.total}}</td>
+
+
+
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+  
+      </div> -->
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="col">
+      <a href="/attendance_home" class="btn">
+        <h3>Attendance</h3>
+      </a>
+
+      <ul class="list-group">
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Total Absentee
+          <span class="badge bg-primary rounded-pill">{{count.absentees}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Today to update
+          <span class="badge bg-primary rounded-pill">{{count.attendance.to_update}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Present
+          <span class="badge bg-primary rounded-pill">{{count.attendance.today_Present}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Absentee
+          <span class="badge bg-primary rounded-pill">{{count.attendance.today_absentees}}</span>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{%endblock%}
