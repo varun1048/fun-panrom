@@ -1,0 +1,171 @@
+<nav class="navbar m-1   members_attendance ">
+
+  <div class="container-fluid">
+    <h3 class="navbar ">{{page_name}}</h3>
+    <div class="d-flex ">
+
+
+
+
+      <ul class="nav nav-pills nav-fill h6">
+        <li class="nav-item m-1 ">
+          {%if page_name == "Today joining Enquirys"%}
+          <a class="btn btn-outline-primary active  " aria-current="page" href="/enquirys_today" accesskey="/"> Today
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.today}}</span>
+
+          </a>
+          {%else%}
+          <a class="btn btn-outline-primary  " href="/enquirys_today" accesskey="/">Today
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.today}}</span>
+          </a>
+        </li>
+        {%endif%}
+
+        <li class="nav-item m-1">
+          {%if page_name == "Expired enquirys"%}
+          <a class="btn btn-outline-primary active h6" href="/enquirys_expired" accesskey="*">Expired
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.expired}}</span>
+
+          </a>
+          {%else%}
+          <a class="btn btn-outline-primary" href="/enquirys_expired" accesskey="*">Expired
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.expired}}</span>
+
+          </a>
+          {%endif%}
+        </li>
+
+        <li class="nav-item m-1">
+          {%if page_name == "Reminder enquirys"%}
+          <a class="btn btn-outline-primary active" href="/enquirys_reminder" accesskey="-">Reminder
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.reminder}}</span>
+
+          </a>
+          {%else%}
+          <a class="btn btn-outline-primary" href="/enquirys_reminder" accesskey="-">Reminder
+            <span class="badge rounded-pill bg-danger">{{count.enquiry.reminder}}</span>
+
+          </a>
+          {%endif%}
+        </li>
+
+        <li class="nav-item m-1">
+          {%if page_name == "Enrolled date"%}
+          <a class="nav-link active" href="/enquirys_date_search" accesskey=".">Date search</a>
+          {%else%}
+          <a class="nav-link" href="/enquirys_date_search" accesskey=".">Date search</a>
+          {%endif%}
+        </li>
+
+      </ul>
+
+
+      {%if page_name != "Enrolled date"%}
+
+      <form class="d-flex m-1" method="post" action="/enquirys">
+        {% csrf_token %}
+
+        <input class="form-control me-2" type="search" placeholder="Enquiry " aria-label="Search" name="queries"accesskey="+"
+          autocomplete="off">
+        <button type="submit" class="btn btn-primary">Search </button>
+
+      </form>
+      {%else%}
+      <form class="d-flex m-1" method="post" action="/enquirys_date_search">
+        {% csrf_token %}
+        <input class="form-control me-2" type="date" aria-label="Search" name="date" autocomplete="off" accesskey=".">
+        <button type="submit" class="btn btn-primary">Search </button>
+
+      </form>
+      {%endif%}
+
+
+
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+
+
+
+
+
+<script>
+  document.getElementById("today_hold_element").style.display = "none";
+  document.getElementById("Expired_hold_element").style.display = "none";
+  document.getElementById("Reminder_hold_element").style.display = "none";
+  document.getElementById("Reminder_hold_element_date").style.display = "none";
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <nav class="navbar m-1   members_attendance " >
+ 
+  <div class="container-fluid">
+      <h3 class="navbar " >{{page_name}}</h3>
+      <div class="d-flex">
+        
+
+        <a class="navbar-brand " href="/enquirys_today">Today</a>
+        <a class="navbar-brand " href="/enquirys_expired">Expired</a>
+        <a class="navbar-brand " href="/enquirys_reminder">Reminder</a>
+        <a class="navbar-brand " href="/enquirys_date_search">By Date</a>
+          
+        <form class="d-flex"  method="post"  action="/enquirys">
+          {% csrf_token %}          
+          
+          <input class="form-control me-2" type="search" placeholder="Name or Number" aria-label="Search" name="queries" autocomplete="off">
+          <button type="submit" class="btn btn-primary" >Search </button>              
+  
+        </form>
+      </div>
+    </div>
+  </nav> -->
+
+
+
+
+<!-- <form action="/enquirys_lists" method="post" class="m-1 Basic radio toggle button group">
+    {% csrf_token %}
+    <input  id="today_hold_element"  placeholder="Members" value="today" name="type"  autocomplete="off" checked>
+    <button type="submit" class="btn btn-outline-primary" >Today</button>
+  </form>
+
+  
+  <form action="/enquirys_lists" method="post" class="m-1">
+    {% csrf_token %}
+    <input  id="Expired_hold_element"  placeholder="Members" value="expired" name="type">
+    <button type="submit" class="btn btn-outline-primary">Expired</button>
+  </form>
+
+  <form action="/enquirys_lists" method="post" class="m-1">
+    {% csrf_token %}
+    <input  id="Reminder_hold_element"  placeholder="Members" value="reminder" name="type">
+    <button type="submit" class="btn btn-outline-primary">Reminder</button>
+  </form>
+
+
+  <form action="/enquirys_lists" method="post" class="m-1">
+    {% csrf_token %}
+    <input  id="Reminder_hold_element_date"  placeholder="Members" value="by_date" name="type">
+    <button type="submit" class="btn btn-outline-primary">By Date</button>
+  </form> -->

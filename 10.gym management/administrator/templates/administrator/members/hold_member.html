@@ -1,0 +1,145 @@
+{%extends 'main.html'%}
+{%block content%}
+{% include 'members_navbar.html'%}
+
+<style>
+  .cropped {
+    width: 800px; /* width of container */
+    height: 800px; /* height of container */
+     /* border: 5px solid black; */
+     object-fit: cover;
+     object-position: 30% 1%; /* try 20px 10px */ 
+     
+    }
+</style>
+
+<div class="">
+
+
+  <nav class="navbar m-1  d-flex justify-content-center  ">
+
+    <div class="btn-group " role="group" aria-label="Basic outlined example">
+
+
+      <form action="/hold_member_list" class="m-1" method="post">
+        {% csrf_token %}
+        <input id="today_hold_element" placeholder="Members" value="today" name="type">
+        {%if page_name == "Rejoing today members" %}
+        <button type="submit" class="btn btn-outline-primary active" checked>Today
+          <span class="badge rounded-pill bg-danger ">{{count.hold.today}}</span>
+        </button>
+        {%else%}
+        <button type="submit" class="btn btn-outline-primary " checked  accesskey="/">Today
+          <span class="badge rounded-pill bg-danger ">{{count.hold.today}}</span>
+
+        </button>
+        {%endif%}
+      </form>
+
+
+      <form action="/hold_member_list" class="m-1" method="post">
+        {% csrf_token %}
+        <input id="Expired_hold_element" placeholder="Members" value="expired" name="type">
+        {%if page_name == "Expired holden members" %}
+        <button type="submit" class="btn btn-outline-primary active">Expired
+          <span class="badge rounded-pill bg-danger ">{{count.hold.expired}}</span>
+        </button>
+        {%else%}
+        <button type="submit" class="btn btn-outline-primary" accesskey="*">Expired
+          <span class="badge rounded-pill bg-danger ">{{count.hold.expired}}</span>
+        </button>
+        {%endif%}
+      </form>
+
+      <form action="/hold_member_list" class="m-1" method="post">
+        {% csrf_token %}
+        <input id="Reminder_hold_element" placeholder="Members" value="reminder" name="type">
+        {%if page_name == "Reminder holden members" %}
+        <button type="submit" class="btn btn-outline-primary active" accesskey="-">Reminder
+          <span class="badge rounded-pill bg-danger " >{{count.hold.reminder}}</span>
+
+        </button>
+
+        {%else%}
+        <button type="submit" class="btn btn-outline-primary" accesskey="-">Reminder
+          <span class="badge rounded-pill bg-danger ">{{count.hold.reminder}}</span>
+
+        </button>
+        {%endif%}
+      </form>
+
+
+    </div>
+  </nav>
+
+
+
+
+</div>
+
+
+<div class="row text-center">
+
+  <div class="col">
+
+
+
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th scope="col">Image</th>
+          <th scope="col">Name</th>
+          <th scope="col">Member Id</th>
+          <th scope="col">Mobile number </th>
+          <th scope="col">Expiry date</th>
+          <th scope="col">Hold till </th>
+          <th scope="col">Reason</th>
+          <th scope="col">Status </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        {%for member in members%}
+        <tr onclick="window.location='member/{{member.id}}/'">
+          <td>
+            <img src="{{member.image.url}}"  id="members_img"    class="cropped"    alt="{{member.image.url}}"  style="width:40px;height: 30px;">
+                
+          </td>
+          <td>{{member.name}}</td>
+          <td>{{member.memberId}}</td>
+          <td>{{member.number}}</td>
+          <td>{{member.expiry}}</td>
+          
+          <td>{{member.hold_date}}</td>
+          <td>{{member.hold_reason}}</td>
+          <td><span class="m-1 badge bg-{{member.color}}">{{member.color_message}}</span></td>
+        </tr>
+
+        {%endfor%}
+      </tbody>
+    </table>
+
+
+
+
+
+  </div>
+
+
+
+</div>
+
+
+
+
+
+<script>
+  document.getElementById("today_hold_element").style.display = "none";
+  document.getElementById("Expired_hold_element").style.display = "none";
+  document.getElementById("Reminder_hold_element").style.display = "none";
+</script>
+
+
+
+
+{%endblock%}

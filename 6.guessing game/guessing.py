@@ -2,7 +2,7 @@ import os
 os.system("cls")
 import random 
 num = random.randint(0,11)
-print(num)
+# print(num)
 
 for i in range(1,4)[::-1]:
     print(f"your chance balance {i}")

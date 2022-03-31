@@ -34,6 +34,7 @@ def increment(player,computer)->True:
     if( ( player == "s") and ( computer == "p")) or (( player == "p") and ( computer == "r")) or (( player == "r") and ( computer == "s")):    
         return True
     return False
+
 def winner(name)->None:
     print(f"""
         {score}
@@ -48,7 +49,7 @@ while True:
     print(f"Score Board {score}")
     
     computer_choice = choice(['s','p','r'])
-    print(f"----------{computer_choice}")
+    # print(f"----------{computer_choice}")
     player_choice = input(f"Enter {player}\t:")
     os.system("cls")
     if player_choice in inputs:
