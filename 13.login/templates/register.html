@@ -1,0 +1,24 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="d-flex justify-content-center">
+    
+    <form method="post"   action="{{url_for('register')}}" style="width:250px;">
+        <div class="mb-3">
+            <label for="exampleInputusername1" class="form-label"  >Username</label>
+            <input type="username" class="form-control" value="venom" id="exampleInputusername1" aria-describedby="usernameHelp"
+                name="username" required>
+            <div id="usernameHelp" class="form-text">We'll never share your username with anyone else.</div>
+        </div>
+        <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label" value="'v" >Password</label>
+            <input type="password" name="password" required class="form-control" id="exampleInputPassword1">
+        </div>
+
+        <button type="submit" class="btn btn-primary"> Register </button>
+    </form>
+</div>
+    
+    
+    
+
+{%endblock%}
