@@ -15,9 +15,10 @@ for x in str(name1):
 
 # print(name1 + name2)
 length = len(  name1 + name2) 
-print("length " , length) 
+# print("length " , length) 
 
-arr = ["f","l","a","m","e","s"]
+arr = ["F","L","A","M","E","S"]
+print(arr)
 # arr = ["f"]
 flames = {
     "f" : "friendship",
@@ -35,33 +36,35 @@ def  array_split(arr,p)->list:
     return arr2  +  arr1   
 
 
-    
+length = 9
 def loop(arr,counter):
     index = 0
-    result = []
-    
-    for _ in range(1,counter + 1):
-        try:
-            result.append(arr[index])
-        except:
+    for _ in range(1,counter):
+        print(index)
+        if index     == len(arr)-1 :
             index = 0
-            result.append(arr[index])
-        index += 1
-    # return { "value" :result.pop() ,"index" :index}
-    print({"value" :result.pop()})
-    return index
+        else:
+            index += 1
+    return index 
 
-for x in range(0,length):
+while True:
+    if ( len(arr) - 1) == 0:
+        break
+    
     index = loop(arr,length) 
-    arr.pop(index) 
-    print(array_split(arr,index))
+    print(f"index {index}")
+    pop =  arr.pop(index)
+    print(f"poped {pop}\n"  )
     arr = array_split(arr,index)
+    print(arr)
+    # i +=1
 
 
 
 
-ty = "".join(arr)
-print( flames[ty]  )
+
+
+
 
 
 # def loop(arr,lenght ):
