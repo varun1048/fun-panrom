@@ -1,0 +1,40 @@
+{%extends 'index.html'%}
+{%block content%}
+{% include "admin/adminNavbar.html" %}
+
+
+<div class="d-flex justify-content-evenly container ">
+    <div class="card" style="width: 18rem;">
+        <img src="https://media.istockphoto.com/vectors/group-of-students-vector-id910098436?k=20&m=910098436&s=612x612&w=0&h=g9BXYf2ND929jT1l9S1q7cT_q-9744BTXCZ21HqLFRs=" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Students</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+
+        <div class="card-body">
+          <a href="/add_student" class="card-link">Add student</a>
+          <a href="#" class="card-link">student list</a>
+        </div>
+    </div>
+
+        
+    <div class="card" style="width: 18rem;">
+        <img src="https://leverageedu.com/blog/wp-content/uploads/2020/04/Aptitude-Questions.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Aptitude Questions</h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+
+        <div class="card-body">
+          <a href="/aptitude" class="card-link">Questions list</a>
+        </div>
+      </div>
+
+
+    
+</div>
+
+
+
+
+{%endblock%}
