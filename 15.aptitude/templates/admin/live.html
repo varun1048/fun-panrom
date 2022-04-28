@@ -1,5 +1,29 @@
 {%extends 'index.html'%}
 {%block content%}
 {% include "admin/adminNavbar.html" %}
-live
+<meta http-equiv="refresh" content="1">
+<div class="container">
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Roll number</th>
+                <th scope="col">Mark</th>
+            </tr>
+        </thead>
+        <tbody>
+            {%for x in students_list%}
+            <tr>
+                <td><h6>{{x.name}}</h6> </td>
+                <td>{{x.roll_number}}</td>
+                <td class="h5 text-danger">{{x.mark}}</td>
+            </tr>
+            {%endfor%}
+        </tbody>
+    </table>
+
+
+</div>
 {%endblock%}

@@ -21,7 +21,7 @@ def index():
         return redirect(url_for("student",_id=result['_id']))
         
         
-    return render_template("home.html")
+    return render_template("student/home.html")
 
 
 @app.route("/student/<string:_id>",methods=['GET',"POST"])
@@ -52,15 +52,15 @@ def student(_id):
                     {"_id":ObjectId(  form['_id'])},
                     {"$set":{"test":True}}
                 )
-        return redirect(url_for("student",_id=form['_id']))
+        return redirect(url_for("student/students",_id=form['_id']))
     
     
     if student['test']:
-        return "your taken test already"
+        return render_template("student/result.html", student = student)
     
     
     for x in questions:
-        random.shuffle(x['options'])
+        random.shuffle(x['options'])    
         
     random.shuffle(questions)
     return render_template("student.html", questions= enumerate(questions) , student = student)
@@ -83,8 +83,9 @@ def admin():
 
 
 @app.route("/live")
-def live():
-    return render_template("admin/live.html"    ,page="live")
+def live():  
+    students_list = list( db['students'].find({}) )
+    return render_template("admin/live.html"    ,page="live" ,students_list=students_list)
 
 
 @app.route("/aptitude",methods=['GET',"POST"])
@@ -115,14 +116,10 @@ def add_student():
             "test":False,
         })
         return redirect(url_for("student_list"))        
-        
-    return render_template("admin/add_student.html" ,page="add_student")
+    
+    students_list = list( db['students'].find({}) )
+    return render_template("admin/add_student.html" ,page="add_student" , students_list = students_list[::-1])
 
-
-@app.route("/student_list")
-def student_list():
-    students = list( db['students'].find({}) )
-    return render_template("admin/student_list.html" ,page="student_list" ,students = students[::-1] )
 
 
 
@@ -132,7 +129,7 @@ def student_list():
 
 
 if __name__ == "__main__":
-    app.run()
+    # app.run()
     
-    # ip = "192.168.1.2"
-    # app.run(host=ip, port=5000, debug=True, threaded=False)
+    ip = "192.168.1.2"
+    app.run(host=ip, port=5000, debug=True, threaded=False)
