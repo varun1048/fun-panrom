@@ -1,0 +1,35 @@
+{%extends 'index.html'%}
+{%block content%}
+
+
+<h2>student {{student.name}}</h2>
+
+
+<form action="/student/{{student._id}}" method="POST">
+
+    {% for i,q in questions %}
+
+
+    <div class="container ">
+
+        <h5> {{i}}. {{q.question}} </h5>
+        <select class="form-select" style="width: 30%;" aria-label="Default select example" name="{{i}}">
+            <option selected >Open this select menu</option>
+            {% for op in q.options %}
+                <option value="{{op}}____{{q._id}}">{{op}}</option>
+            {% endfor %}
+        </select>
+    </div>
+    {% endfor %}
+
+
+    <input type="text" name="_id" id="_id" value="{{student._id}}" >
+
+    <button type="submit"  class="btn btn-primary m-2">Submit</button>
+</form>
+
+<script>
+    document.getElementById("_id").style.display = "none";
+</script>
+
+{%endblock%}

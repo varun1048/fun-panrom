@@ -1,5 +1,25 @@
 {%extends 'index.html'%}
 {%block content%}
 {% include "admin/adminNavbar.html" %}
-add student
+<div class="d-flex justify-content-center">
+    
+    <form action="/add_student" method="post">
+
+        <div class="form-floating mb-5">
+            <input type="text" class="form-control" id="floatingInput" placeholder="Name" name="name" required>
+            <label for="floatingInput">Name </label>
+        </div>
+
+        <div class="form-floating mb-5">
+            <input type="text" class="form-control" id="floatingInput" placeholder="roll_number" name="roll_number" required>
+            <label for="floatingInput">Roll Number </label>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Add Student</button>
+    </form>
+        
+</div>
+
 {%endblock%}

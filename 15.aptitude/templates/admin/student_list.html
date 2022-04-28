@@ -1,0 +1,28 @@
+{%extends 'index.html'%}
+{%block content%}
+{% include "admin/adminNavbar.html" %}
+<div class="container ">
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Roll number</th>
+        <th scope="col">Mark</th>
+    </tr>
+</thead>
+<tbody>
+    {%for x in  students%}
+    <tr>
+        <td>{{x.name}}</td>
+        <td>{{x.roll_number}}</td>
+        <td>{{x.mark}}</td>
+    </tr>
+    {%endfor%}
+</tbody>
+</table>
+
+
+
+</div>
+{%endblock%}
