@@ -48,6 +48,8 @@
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Roll number</th>
+                        <th scope="col">Mark</th>
+                        <th scope="col">Test</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -55,6 +57,15 @@
                     <tr>
                         <td><h6>{{x.name}}</h6> </td>
                         <td>{{x.roll_number}}</td>
+                        <td>{{x.mark}}</td>
+                        <td>
+                            {% if x.test %}
+                                <a href="/redo/{{x._id}}" class="btn btn-info"> Redo </a>
+                            {%else%}
+                                {{x.test}}
+                            {%endif%}
+                        </td>
+                        
                     </tr>
                     {%endfor%}
                 </tbody>

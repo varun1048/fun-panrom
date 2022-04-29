@@ -52,7 +52,7 @@ def student(_id):
                     {"_id":ObjectId(  form['_id'])},
                     {"$set":{"test":True}}
                 )
-        return redirect(url_for("student/students",_id=form['_id']))
+        return redirect(url_for("student",_id=form['_id']))
     
     
     if student['test']:
@@ -84,8 +84,8 @@ def admin():
 
 @app.route("/live")
 def live():  
-    students_list = list( db['students'].find({}) )
-    return render_template("admin/live.html"    ,page="live" ,students_list=students_list)
+    students_list = db['students'].aggregate([{ "$sort" : { "mark" : -1 } }]) 
+    return render_template("admin/live.html"    ,page="live" ,students_list= enumerate(students_list) )
 
 
 @app.route("/aptitude",methods=['GET',"POST"])
@@ -115,10 +115,23 @@ def add_student():
             "mark":0,
             "test":False,
         })
-        return redirect(url_for("student_list"))        
+        return redirect(url_for("add_student"))        
     
     students_list = list( db['students'].find({}) )
     return render_template("admin/add_student.html" ,page="add_student" , students_list = students_list[::-1])
+
+
+@app.route("/redo/<string:_id>")
+def redo(_id):  
+    db['students'].find_one_and_update(
+        {"_id":ObjectId(_id)},
+        {"$set":{"mark":0 , "test":False}}
+    )
+    print(student)
+    
+    return redirect(url_for("add_student"))
+    
+
 
 
 

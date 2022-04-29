@@ -22,12 +22,15 @@
     <div class="container m-1">
 
         <h5> {{i+1}}. {{q.question}} </h5>
-        <select class="form-select" style="width: 50%;" aria-label="Default select example" name="{{i}}">
+        <div class="d-flex justify-content-center">
+          
+          <select class="form-select" style="width: 50%;" aria-label="Default select example" name="{{i}}">
             <option selected >Open this select menu</option>
             {% for op in q.options %}
-                <option value="{{op}}____{{q._id}}">{{op}}</option>
+            <option value="{{op}}____{{q._id}}">{{op}}</option>
             {% endfor %}
-        </select>
+          </select>
+        </div>
     </div>
     {% endfor %}
 

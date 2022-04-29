@@ -8,14 +8,16 @@
     <table class="table">
         <thead>
             <tr>
+                <th scope="col">Top</th>
                 <th scope="col">Name</th>
                 <th scope="col">Roll number</th>
                 <th scope="col">Mark</th>
             </tr>
         </thead>
         <tbody>
-            {%for x in students_list%}
+            {%for  i,x in students_list%}
             <tr>
+                <td><h6>{{i + 1}}</h6> </td>
                 <td><h6>{{x.name}}</h6> </td>
                 <td>{{x.roll_number}}</td>
                 <td class="h5 text-danger">{{x.mark}}</td>
