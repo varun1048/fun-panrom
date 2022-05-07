@@ -91,7 +91,7 @@ app.post("/pin", (req, res) => {
     accounts_model.findOne({ "pin": req.body.pin }, (err, data) => {
         if (err) throw err
         try {
-            print(data.name)
+            print(data.name + " \t Loged in")
             req.session.obj = data
             res.redirect("dashboard")
         }
