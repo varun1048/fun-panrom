@@ -1,18 +1,20 @@
+def nameReplacer(name):
+    return name.replace(" ", "").lower()
+
+def makeListOfNames(name):
+    return list(nameReplacer(name))
+
 def do_flames(name1,name2):
 
-    string1 = name1.replace(" ","").lower() 
-    string2 = name2.replace(" ","").lower() 
+    firstName = makeListOfNames(name1)
+    secondName = makeListOfNames(name2)
 
-    name1  = list(string1)
-    name2 = list(string2)
+    for x in str(firstName):
+        if x in  secondName:
+            firstName.remove(x)
+            secondName.remove(x)
 
-
-    for x in str(name1):
-        if x in  name2:
-            name1.remove(x)
-            name2.remove(x)
-
-    length = len(  name1 + name2) 
+    length = len(firstName + secondName) 
     arr = ["f","l","a","m","e","s"]
     flames = {
         "f" : "Friendship",

@@ -1,0 +1,118 @@
+<% accounts.foreach((x)=> {%>
+
+    <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+    </tr>
+
+    <% })%>
+
+
+
+
+
+
+
+
+
+
+        console.clear()
+        const print = (inner) => console.log(inner)
+        const express = require("express")
+        const bodyParser = require("body-parser")
+        const mongodb = require("mongodb").MongoClient
+        // const path = require("path")
+
+        const app = express()
+
+
+        app.use(bodyParser.urlencoded({ extended: false }))
+        app.use(bodyParser.json())
+        app.set('view engine', 'ejs');
+
+
+        url = "mongodb+srv://dineshj2299:dineshj2299@cluster0.asj5t.mongodb.net/"
+        mongodb.connect(url, (err, db) => {
+        if (err) throw err
+        let database = db.db("guru_nanak_bank")
+
+        // database.collection("accounts").findOne({"name":"varun"} , (err,result)=>{
+        // if(err) throw err
+        // app.get("/",(req,res)=>{
+
+
+        // print(result.name)
+        // res.render("index",{name:result.name})
+        // })
+
+        // db.close()
+        // })
+
+        function getAccounts() {
+        let out = []
+        database.collection("accounts").find({}).toArray(err, result => {
+        if (err) throw err
+        print("result")
+        out.concat(result)
+        db.close()
+        })
+        return out
+
+        }
+
+
+
+
+        // database.collection("accounts").find({}).toArray(err, result => {
+        // if (err) throw err
+        // print(result)
+        // db.close()
+        // })
+        app.get("/admin", (req, res) => {
+        console.log(getAccounts())
+
+        res.render("admin", { accounts: "getAccounts()" })
+
+        })
+
+
+
+
+        app.get("/", (req, res) => {
+        res.render("index")
+        })
+
+
+
+
+
+        app.post("/", (req, res) => {
+        form = req.body
+        res.render("index", { name: form.name })
+        })
+
+
+
+        app.get("/language", (req, res) => {
+        res.render("language")
+        })
+
+        app.get("/pin", (req, res) => {
+        res.render("pin")
+        })
+
+        app.post("/pin", (req, res) => {
+        res.redirect("dashboard")
+        })
+
+        app.get("/dashboard", (req, res) => {
+        res.render("dashboard")
+        })
+
+
+        })
+
+        port = 5000
+        app.listen(port, () => console.log(`Application Port on ${port}`))

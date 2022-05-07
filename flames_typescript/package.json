@@ -1,0 +1,19 @@
+{
+  "name": "flames_typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "start": "ts-node src/index.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fp-ts": "^2.12.1"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.31",
+    "ts-node": "^10.7.0"
+  }
+}
