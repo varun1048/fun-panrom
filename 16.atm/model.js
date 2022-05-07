@@ -5,6 +5,7 @@ let schema = new mongoose.Schema({
     pin: { type: String, required: true },
 
     amount: { type: Number, required: false,default: 0 },
+    transaction: { type: Array, required: false,default: [] },
 })
 module.exports = mongoose.model("accounts",schema)
 

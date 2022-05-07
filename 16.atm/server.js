@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 app.use(sessions({
     secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
-    saveUninitialized:true,
+    saveUninitialized: true,
     resave: false
 }));
 app.use(express.json());
@@ -25,7 +25,7 @@ app.set('view engine', 'ejs');
 
 
 url = "mongodb+srv://dineshj2299:dineshj2299@cluster0.asj5t.mongodb.net/"
-mongoose.connect(url, {useNewUrlParser: true, useUnifiedTopology: true},console.log("DB connected"));
+mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, console.log("DB connected"));
 const accounts_model = require("./model")
 
 let out = []
@@ -37,7 +37,7 @@ let out = []
 
 
 app.get("/admin", (req, res) => {
-    accounts_model.find({},(err,data)=>{
+    accounts_model.find({}, (err, data) => {
         if (err) throw err
         res.render("admin", { accounts: data })
     })
@@ -47,10 +47,10 @@ app.get("/admin", (req, res) => {
 
 app.post("/admin", (req, res) => {
     form = req.body
-    accounts_model.insertMany(form,(err,data)=>{
+    accounts_model.insertMany(form, (err, data) => {
         if (err) throw err
-        
-        
+
+
         // print(data)
         res.redirect("admin")
     })
@@ -88,26 +88,29 @@ app.get("/pin", (req, res) => {
     res.render("pin")
 })
 app.post("/pin", (req, res) => {
-    accounts_model.findOne({"pin":req.body.pin},(err,data)=>{
+    accounts_model.findOne({ "pin": req.body.pin }, (err, data) => {
         if (err) throw err
-        req.session.obj = data
-        // print(data)
-        res.redirect("dashboard")
+        try {
+            print(data.name)
+            req.session.obj = data
+            res.redirect("dashboard")
+        }
+        catch (err) {
+            res.redirect("invalid")
+        }
     })
 })
 
-
+app.get("/invalid", (req, res) => res.render("invalid") )
 
 app.get("/dashboard", (req, res) => {
-    // print(req.session.obj.name)
-    // print(req.session)
-    res.render("dashboard",{obj:req.session.obj})
+    res.render("dashboard", { obj: req.session.obj })
 })
 
 
 
 let dashboard = require("./dashboard")
-app.use("/dashboard",dashboard)
+app.use("/dashboard", dashboard)
 
 
 

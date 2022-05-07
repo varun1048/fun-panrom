@@ -36,21 +36,15 @@
                     </div>
                 </div>
 
-                <div class="d-flex justify-content-between m-2">
-                    <a href="/dashboard/withdrawal" class="btn btn-primary">Withdrawal</a>
-                    <a href="/dashboard/deposit" class="btn btn-primary">Deposit</a>
-                </div>
+                <%if(result){%>
+                    <h5 class="text-success"> <%= message %> </h5>
+                    <%}  else {%>
+                    <h5 class="text-danger"> <%= message %> </h5>
+                <%}%>
 
-                <div class="d-flex justify-content-between m-2">
-                    <a href="/dashboard/balance_inquiry" class="btn btn-primary">Balance Inquiry</a>
-                    <a href="#" class="btn btn-primary">Send money</a>
-                </div>
 
-                <div class="d-flex justify-content-between m-2">
-                    <a href="/dashboard/mini_statement" class="btn btn-primary">Mini Statement</a>
-                    <a href="#" class="btn btn-primary">Change pin</a>
-                </div>
 
+                    <a href="/dashboard" class="btn btn-primary">Dashboart</a>
             </div>
 
         </div>
