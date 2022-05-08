@@ -137,7 +137,7 @@ router.get("/mini_statement", (req, res) => {
 
 
 
-router.get("/change_pin", (req, res) => res.render("dashboard/change_pin"))
+router.get("/change_pin", (req, res) => res.render("dashboard/change_pin",{ obj: req.session.obj, }))
 router.post("/change_pin", (req, res) => {
     form = req.body
     if (form.pin1 == form.pin1) {
@@ -160,7 +160,7 @@ router.post("/change_pin", (req, res) => {
 
 
 
-router.get("/send_money", (req, res) => res.render("dashboard/send_money"))
+router.get("/send_money", (req, res) => res.render("dashboard/send_money",{ obj: req.session.obj, }))
 router.post("/send_money", (req, res) => {
     sending_amount = req.body.amount
     account = req.body.account

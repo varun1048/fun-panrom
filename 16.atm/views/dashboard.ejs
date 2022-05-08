@@ -26,32 +26,36 @@
 
 
 
-        <div class="card text-center" style="width: 28rem;"  >
-            
-            <div class="card-body">
-                <h5 class="card-title">GURU NANAK ATM </h5>
-                <div class="d-flex justify-content-between">
-                    <h4><%= obj.name %></h4>
-                    
-                    <div>
+        <div class="card text-center" style="width: 30rem;">
 
-                        <p>Account Number :   <%= obj.account %> </p>
+            <div class="card-body">
+                <h5 class="card-title" id="title_GURU">GURU NANAK ATM </h5>
+                <div class="d-flex justify-content-between">
+                    <h4>
+                        <%= obj.name %>
+                    </h4>
+
+                    <div class="d-flex justify-content-between">
+
+                        <p id="account_number">Account number </p>
+                        <span class="text-dark ">: <%= obj.account %></span>
+                       
                     </div>
                 </div>
 
                 <div class="d-flex justify-content-between m-2">
-                    <a href="/dashboard/withdrawal" class="btn btn-primary">Withdrawal</a>
-                    <a href="/dashboard/deposit" class="btn btn-primary">Deposit</a>
+                    <a href="/dashboard/withdrawal" class="btn btn-primary"         id="withdrawal">Withdrawal</a>
+                    <a href="/dashboard/deposit" class="btn btn-primary"            id="deposit">Deposit</a>
                 </div>
 
                 <div class="d-flex justify-content-between m-2">
-                    <a href="/dashboard/balance_inquiry" class="btn btn-primary">Balance Inquiry</a>
-                    <a href="/dashboard/send_money" class="btn btn-primary">Send money</a>
+                    <a href="/dashboard/balance_inquiry" class="btn btn-primary"    id="balance" >Balance Inquiry</a>
+                    <a href="/dashboard/send_money" class="btn btn-primary"         id="send_money">Send Money</a>
                 </div>
 
                 <div class="d-flex justify-content-between m-2">
-                    <a href="/dashboard/mini_statement" class="btn btn-primary">Mini Statement</a>
-                    <a href="/dashboard/change_pin" class="btn btn-primary">Change pin</a>
+                    <a href="/dashboard/mini_statement" class="btn btn-primary"     id="mini_statement">Mini Statement</a>
+                    <a href="/dashboard/change_pin" class="btn btn-primary"         id="change_pin">Change pin</a>
                 </div>
 
             </div>
@@ -61,6 +65,7 @@
 
 
 
+    <script src="/js/dsahboard.js"></script>
 
 </body>
 

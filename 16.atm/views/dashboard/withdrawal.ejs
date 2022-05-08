@@ -23,24 +23,39 @@
 
 
 
-        <div class="card text-center" style="width: 28rem;"  >
-            
-            <div class="card-body">
-                <h5 class="card-title">GURU NANAK ATM </h5>
-                <div class="d-flex justify-content-between">
-                    <h4><%= obj.name %></h4>
-                    
-                    <div>
+        <div class="card text-center" style="width: 28rem;">
 
-                        <p>Account Number :   <%= obj.account %> </p>
+            <div class="card-body">
+                <h5 class="card-title"  id="title_GURU">GURU NANAK ATM </h5>
+                <div class="d-flex justify-content-between">
+                    <h4>
+                        <%= obj.name %>
+                    </h4>
+
+                    <div class="d-flex justify-content-between">
+
+                        <p id="account_number">Account number </p>
+                        <span class="text-dark ">: <%= obj.account %></span>
+                       
                     </div>
+
+
                 </div>
 
-                <form action="/dashboard/withdrawal" method="post">
-                    <div class="mb-3 d-flex justify-content-center " >
-                        <input type="number" class="form-control text-center" required placeholder="Withdrawal Amount" id="exampleInputNumber" style="width: 50%;" name="withdraw_amount">
-                      </div>
-                      <button type="submit" class="btn btn-success">Withdraw</button>
+                <form action="/dashboard/withdrawal" method="post" class="">
+
+                    <div class="d-flex justify-content-center">
+
+                        <div class="form-floating mb-3 ">
+
+                            <input type="number" class="form-control text-center" name="withdraw_amount"
+                                placeholder="withdraw_amount" required  >
+
+                            <label for="floatingInput" id="withdraw_message">Withdraw amount</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-success"   id="withdraw_btn">Withdraw</button>
                 </form>
 
             </div>
@@ -50,6 +65,7 @@
 
 
 
+    <script src="/js/withdrawal.js"></script>
 
 </body>
 

@@ -26,21 +26,38 @@
         <div class="card text-center" style="width: 28rem;"  >
             
             <div class="card-body">
-                <h5 class="card-title">GURU NANAK ATM </h5>
+                <h5 class="card-title"  id="title_GURU">GURU NANAK ATM </h5>
                 <div class="d-flex justify-content-between">
                     <h4><%= obj.name %></h4>
                     
-                    <div>
 
-                        <p>Account Number :   <%= obj.account %> </p>
+                    <div class="d-flex justify-content-between">
+
+                        <p id="account_number">Account number </p>
+                        <span class="text-dark ">: <%= obj.account %></span>
+                       
                     </div>
+
                 </div>
 
                 <form action="/dashboard/deposit" method="post">
-                    <div class="mb-3 d-flex justify-content-center " >
-                        <input type="number" class="form-control text-center" required placeholder="Deposit Amount" id="exampleInputNumber" style="width: 50%;" name="deposit_amount">
-                      </div>
-                      <button type="submit" class="btn btn-success">Deposit</button>
+
+                      <div class="d-flex justify-content-center">
+
+                        <div class="form-floating mb-3 ">
+
+                            <input type="number" class="form-control text-center" name="deposit_amount"
+                                placeholder="deposit_amount" required  >
+
+                            <label for="floatingInput" id="deposit_message">Deposit Amount</label>
+                        </div>
+                    </div>
+
+
+
+
+
+                      <button type="submit" class="btn btn-success"     id="deposit_btn">Deposit</button>
                 </form>
 
             </div>
@@ -49,6 +66,7 @@
     </div>
 
 
+    <script src="/js/deposit.js"></script>
 
 
 </body>

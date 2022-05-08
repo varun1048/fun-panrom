@@ -26,14 +26,18 @@
         <div class="card text-center" style="width: 28rem;"  >
             
             <div class="card-body">
-                <h5 class="card-title">GURU NANAK ATM </h5>
+                <h5 class="card-title"  id="title_GURU">GURU NANAK ATM </h5>
                 <div class="d-flex justify-content-between">
                     <h4><%= obj.name %></h4>
                     
-                    <div>
 
-                        <p>Account Number :   <%= obj.account %> </p>
+                    <div class="d-flex justify-content-between">
+
+                        <p id="account_number">Account number </p>
+                        <span class="text-dark ">: <%= obj.account %></span>
+                       
                     </div>
+
                 </div>
 
                 <%if(result){%>
@@ -44,7 +48,7 @@
 
 
 
-                    <a href="/dashboard" class="btn btn-primary">Main Menu</a>
+                    <a href="/dashboard" class="btn btn-primary" id="submit_btn">Main Menu</a>
             </div>
 
         </div>
@@ -52,6 +56,7 @@
 
 
 
+    <script src="/js/transaction.js"></script>
 
 </body>
 

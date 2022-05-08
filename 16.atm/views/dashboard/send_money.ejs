@@ -23,25 +23,39 @@
 
 
 
-        <div class="card text-center" style="width: 28rem;"  >
+        <div class="card text-center"  style="width: 28rem;"  >
             <div class="card-body">
-                <h5 class="card-title">GURU NANAK ATM </h5>
-                <b class="card-text">Send Money</b>
+                <h5 class="card-title"  id="title_GURU">GURU NANAK ATM </h5>
+                <div class="d-flex justify-content-between">
+                    <h4>
+                        <%= obj.name %>
+                    </h4>
+
+                    <div class="d-flex justify-content-between">
+
+                        <p id="account_number">Account number </p>
+                        <span class="text-dark ">: <%= obj.account %></span>
+                       
+                    </div>
+
+
+                </div>
+
                 <form action="/dashboard/send_money" method="post">
 
                     <div class="form-floating mb-3">
 
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                        <input type="text" class="form-control  text-center" id="floatingInput" placeholder="name@example.com"
                             name="amount" required>
-                        <label for="floatingInput">Amount</label>
+                        <label for="floatingInput"  id="amount">Sending Amount</label>
                     </div>
 
 
                     <div class="form-floating mb-3" >
 
-                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                        <input type="text" class="form-control  text-center" id="floatingInput" placeholder="name@example.com"
                             name="account" required >
-                        <label for="floatingInput">Account Number</label>
+                        <label for="floatingInput"  id="account">Receiver account number</label>
 
                     </div>
 
@@ -50,7 +64,7 @@
 
 
 
-                      <button type="submit" class="btn btn-success">Submit</button>
+                      <button type="submit" class="btn btn-success" id="submit_btn">Submit</button>
                 </form>
 
 
@@ -61,6 +75,7 @@
 
 
 
+    <script src="/js/send_money.js"></script>
 
 </body>
 

@@ -6,16 +6,18 @@ const push = (id, value) =>  data.push({id: id , value : value })
 
 if (inner == "tamil") {
     push("title_GURU", "குருநானக் ஏடிஎம்" )
-    
-    push("main_message", "உங்கள் ஏடிஎம் பின் எண்ணை உள்ளிடவும்" )
-    push("submit_btn", "சமர்ப்பிக்கவும்" )
+    push("account_number", "வங்கி கணக்கு எண்" )
+
+    push("withdraw_message", "பெறும் தொகை" )
+    push("withdraw_btn", "சமர்ப்பிக்கவும்" )
 }
 if (inner == "hindi") {
     
     push("title_GURU", "गुरु नानक एटीएम")
+    push("account_number", "बैंक खाता संख्या")
 
-    push("main_message", "अपना एटीएम पिन नंबर दर्ज करें")
-    push("submit_btn", "प्रस्तुत")
+    push("withdraw_message", "प्रीटेकिंग राशि")
+    push("withdraw_btn", "लेना")
 
     
 }

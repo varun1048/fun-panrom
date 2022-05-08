@@ -26,18 +26,22 @@
         <div class="card text-center" style="width: 28rem;"  >
             
             <div class="card-body">
-                <h5 class="card-title">GURU NANAK ATM </h5>
+                <h5 class="card-title" id="title_GURU">GURU NANAK ATM </h5>
                 <div class="d-flex justify-content-between">
                     <h4><%= obj.name %></h4>
                     
-                    <div>
 
-                        <p>Account Number :   <%= obj.account %> </p>
+                    <div class="d-flex justify-content-between">
+
+                        <p id="account_number">Account number </p>
+                        <span class="text-dark ">: <%= obj.account %></span>
+                       
                     </div>
+
                 </div>
 
 
-                <a href="/dashboard" class="btn btn-primary">Main Menu</a>
+                <a href="/dashboard" class="btn btn-primary" id="main_menu">Main Menu</a>
 
 
 
@@ -45,9 +49,9 @@
                 <table class="table">
                     <thead>
                         <tr>
-                            <th scope="col">Transaction</th>
-                            <th scope="col">Amount</th>
-                            <th scope="col">Date and time</th>
+                            <th scope="col"     id="transaction">Transaction</th>
+                            <th scope="col"     id="amount">Amount</th>
+                            <th scope="col"     id="date">Date and time</th>
                         </tr>
                     </thead>
 
@@ -89,6 +93,7 @@
 
 
 
+    <script src="/js/mini_statement.js"></script>
 
 </body>
 
