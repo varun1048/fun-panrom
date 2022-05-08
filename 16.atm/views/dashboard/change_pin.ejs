@@ -18,33 +18,28 @@
             GURU NANAK BANK
         </div>
     </nav>
-
+    
     <div class="d-flex justify-content-center m-3">
 
 
 
         <div class="card text-center" style="width: 28rem;"  >
-            
             <div class="card-body">
                 <h5 class="card-title">GURU NANAK ATM </h5>
-                <div class="d-flex justify-content-between">
-                    <h4><%= obj.name %></h4>
-                    
-                    <div>
+                <p class="card-text">Change pin</p>
+                <form action="/dashboard/change_pin" method="post">
+                    <div class="mb-3 d-flex justify-content-center " >
+                        <input type="password"  class="form-control text-center" id="exampleInputPassword1" placeholder="Pin one" style="width: 50%;" name="pin1">
+                      </div>
 
-                        <p>Account Number :   <%= obj.account %> </p>
-                    </div>
-                </div>
+                      <div class="mb-3 d-flex justify-content-center " >
+                        <input type="password"  class="form-control text-center" id="exampleInputPassword2" placeholder="Pin Two" style="width: 50%;" name="pin2">
+                      </div>
 
-                <%if(result){%>
-                    <h5 class="text-success"> <%= message %> </h5>
-                    <%}  else {%>
-                    <h5 class="text-danger"> <%= message %> </h5>
-                <%}%>
+                      <button type="submit" class="btn btn-success">Submit</button>
+                </form>
 
 
-
-                    <a href="/dashboard" class="btn btn-primary">Main Menu</a>
             </div>
 
         </div>

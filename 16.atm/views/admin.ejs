@@ -29,26 +29,26 @@
                     <form action="/admin" method="post">
                         <div class="form-floating mb-3">
 
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required
                                 name="name">
                             <label for="floatingInput">Name</label>
                         </div>
 
                         <div class="form-floating mb-3">
 
-                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com" required
                                 name="account">
                             <label for="floatingInput">Account Number</label>
                         </div>
 
 
                         <div class="form-floating">
-                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password"
+                            <input type="password" class="form-control" id="floatingPassword" placeholder="Password" required
                                 name="pin">
                             <label for="floatingPassword">Pin Number</label>
                         </div>
 
-                        <button type="submit" class="btn btn-primary m-3">Submit</button>
+                        <button type="submit" class="btn btn-primary m-3">Add</button>
                     </form>
                 </div>
 
@@ -59,6 +59,7 @@
 
                 <div class="col">
 
+                    <h2>Accounts</h2>
 
                     <table class="table">
                         <thead>
@@ -66,6 +67,7 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Account</th>
                                 <th scope="col">Pin</th>
+                                <th scope="col">Amount</th>
                             </tr>
                         </thead>
 
@@ -82,6 +84,7 @@
                                     <th><%= x.name %> </th>
                                     <th><%= x.account %></th>
                                     <th><%= x.pin %></th>
+                                    <th><%= x.amount %> Rs</th>
                                 </tr>
 
                                 <% })%>

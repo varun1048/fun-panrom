@@ -94,20 +94,20 @@ router.post("/withdrawal", (req, res) => {
 
 
 router.get("/deposit", (req, res) => {
-    res.render("dashboard/deposit", {obj: req.session.obj,})
+    res.render("dashboard/deposit", { obj: req.session.obj, })
 })
 
 
 router.post("/deposit", (req, res) => {
     let deposit_amount = req.body.deposit_amount
-    
+
 
     accounts_model.findOne({ "pin": req.session.obj.pin }, (err, data) => {
         if (err) throw err
 
         let transaction = [{ type: "Credit", amount: deposit_amount, current_data: current_data() }].concat(data.transaction)
         const filter = { pin: req.session.obj.pin };
-        const update = { "$inc": { amount:  deposit_amount }, "$set": { transaction: transaction } };
+        const update = { "$inc": { amount: deposit_amount }, "$set": { transaction: transaction } };
 
         accounts_model.findOneAndUpdate(filter, update, (err, data) => {
             if (err) throw err
@@ -125,14 +125,6 @@ router.post("/deposit", (req, res) => {
 
 
 
-
-
-
-
-
-
-
-
 router.get("/mini_statement", (req, res) => {
 
     accounts_model.findOne({ "pin": req.session.obj.pin }, (err, data) => {
@@ -145,8 +137,109 @@ router.get("/mini_statement", (req, res) => {
 
 
 
+router.get("/change_pin", (req, res) => res.render("dashboard/change_pin"))
+router.post("/change_pin", (req, res) => {
+    form = req.body
+    if (form.pin1 == form.pin1) {
+
+        const filter = { pin: req.session.obj.pin };
+        const update = { "$set": { pin: form.pin1 } };
 
 
+        accounts_model.findOneAndUpdate(filter, update, (err, data) => {
+            if (err) throw err
+            res.redirect("/pin")
+        })
+    }
+    else {
+        let str = "Both pin number not matched.."
+        res.redirect(`transaction/${str}/0`)
+    }
+})
+
+
+
+
+router.get("/send_money", (req, res) => res.render("dashboard/send_money"))
+router.post("/send_money", (req, res) => {
+    sending_amount = req.body.amount
+    account = req.body.account
+
+    accounts_model.findOne({ "account": account }, (err, Receiver) => {
+        if (err) throw err
+        try {
+            print("Sender name " + Receiver.name  )
+
+
+
+
+
+
+            accounts_model.findOne({ "pin": req.session.obj.pin }, (err, main) => {
+                // accounts_model.findOne({ "pin": "1" }, (err, data) => {
+                if (err) throw err
+                if (sending_amount < main.amount) {
+                    // res.send(data)
+
+                    let transaction = [{ type: "Transferd - D", amount: sending_amount, current_data: current_data() }].concat(main.transaction)
+                    const filter = { pin: req.session.obj.pin };
+                    const update = { "$inc": { amount: - sending_amount }, "$set": { transaction: transaction } };
+                    accounts_model.findOneAndUpdate(filter, update, (err, data2) => {
+                        if (err) throw err
+                    // str = "Transaction successfull, To the account " + account
+                        // res.redirect(`transaction/${str}/1`)
+                    })
+
+
+
+
+                    
+
+                        //Receiver
+                        let Received_transaction = [{ type: "Received - C", amount: sending_amount, current_data: current_data() }].concat(Receiver.transaction)
+                        const Received_filter = { "account": Receiver.account };
+                        const Received_update = { "$inc": { amount:  sending_amount }, "$set": { transaction: Received_transaction } };
+                        accounts_model.findOneAndUpdate(Received_filter, Received_update, (err, Received2) => {
+                            if (err) throw err
+
+                           print("-------------"+Received2.name)
+                            
+                        })
+
+                        str = "Transaction successfull, To the account " + account
+                        res.redirect(`transaction/${str}/1`)
+
+
+                }
+                else {
+                    res.redirect("transaction/Insufficient Balance/0")
+                }
+            })
+
+
+
+
+
+
+
+
+
+
+
+        }
+        catch (err) {
+            res.redirect("transaction/Receiver  account invalied/0")
+        }
+    })
+
+
+
+
+    // accounts_model.findOne({ "account": account }, (err, data) => {
+    //     if (err) throw err
+    //     res.send(data)
+    // })
+})
 
 
 

@@ -18,33 +18,42 @@
             GURU NANAK BANK
         </div>
     </nav>
-
+    
     <div class="d-flex justify-content-center m-3">
 
 
 
         <div class="card text-center" style="width: 28rem;"  >
-            
             <div class="card-body">
                 <h5 class="card-title">GURU NANAK ATM </h5>
-                <div class="d-flex justify-content-between">
-                    <h4><%= obj.name %></h4>
-                    
-                    <div>
+                <b class="card-text">Send Money</b>
+                <form action="/dashboard/send_money" method="post">
 
-                        <p>Account Number :   <%= obj.account %> </p>
+                    <div class="form-floating mb-3">
+
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            name="amount" required>
+                        <label for="floatingInput">Amount</label>
                     </div>
-                </div>
-
-                <%if(result){%>
-                    <h5 class="text-success"> <%= message %> </h5>
-                    <%}  else {%>
-                    <h5 class="text-danger"> <%= message %> </h5>
-                <%}%>
 
 
+                    <div class="form-floating mb-3" >
 
-                    <a href="/dashboard" class="btn btn-primary">Main Menu</a>
+                        <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com"
+                            name="account" required >
+                        <label for="floatingInput">Account Number</label>
+
+                    </div>
+
+
+
+
+
+
+                      <button type="submit" class="btn btn-success">Submit</button>
+                </form>
+
+
             </div>
 
         </div>
