@@ -3,7 +3,7 @@ const print = (inner) => console.log(inner)
 const express = require("express")
 const bodyParser = require("body-parser")
 const mongoose = require("mongoose")
-
+const path = require("path")
 const cookieParser = require("cookie-parser");
 const sessions = require('express-session');
 
@@ -22,6 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 app.set('view engine', 'ejs');
+
+app.use(express.static(path.join(__dirname, 'public')));
 
 
 url = "mongodb+srv://dineshj2299:dineshj2299@cluster0.asj5t.mongodb.net/"
@@ -82,11 +84,8 @@ app.get("/language/:type", (req, res) => {
 
 
 
-account = undefined
 
-app.get("/pin", (req, res) => {
-    res.render("pin")
-})
+app.get("/pin", (req, res) => res.render("pin",{"language": req.session.language }) )
 app.post("/pin", (req, res) => {
     accounts_model.findOne({ "pin": req.body.pin }, (err, data) => {
         if (err) throw err
@@ -115,7 +114,7 @@ app.use("/dashboard", dashboard)
 
 
 
-
+// app.get("/javascrpte/pin.js", (req, res) => res.render("javascrpte/pin.js") )
 
 
 port = 5000

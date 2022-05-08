@@ -9,12 +9,14 @@
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>GN BANK</title>
     <link rel="icon" href="http://www.25.gurunanakcollegeasc.in/images/icon2.png" type="image/icon type">
+    <script>sessionStorage.setItem("language","<%= language %>");</script>
 </head>
+
 
 <body>
     <nav class="navbar navbar-light bg-light">
-        <div class="container">
-            <img src="http://www.25.gurunanakcollegeasc.in/images/icon2.png" alt="" width="50" height="54" disabled>
+        <div class="container" href="/">
+            <img src="http://www.25.gurunanakcollegeasc.in/images/icon2.png" alt="gurunanakcollegeasc" width="50" height="54"  >
             GURU NANAK BANK
         </div>
     </nav>
@@ -22,16 +24,17 @@
     <div class="d-flex justify-content-center m-3">
 
 
+    
 
         <div class="card text-center" style="width: 28rem;"  >
             <div class="card-body">
-                <h5 class="card-title">GURU NANAK ATM </h5>
-                <p class="card-text">Enter Your Pin Number</p>
+                <h5 class="card-title titel_name"    id="title_GURU"  > GURU NANAK BANK </h5>
+                <p class="card-text"    id="main_message"        >Enter Your ATM Pin Number</p>
                 <form action="/pin" method="post">
                     <div class="mb-3 d-flex justify-content-center " >
                         <input type="password" required placeholder="Pin number"  class="form-control text-center" id="exampleInputPassword1" style="width: 50%;" name="pin">
                       </div>
-                      <button type="submit" class="btn btn-primary">Submit</button>
+                      <button type="submit" class="btn btn-primary" id="submit_btn">Submit</button>
                 </form>
 
 
@@ -39,9 +42,10 @@
 
         </div>
     </div>
+    
 
 
-
+    <script src="/js/pin.js"  ></script>
 
 </body>
 
