@@ -1,0 +1,36 @@
+{%extends 'layout.html'%}
+{%block content%}
+
+
+
+
+<div class="container m-1">
+
+    <form action="/admin/add_prodect" method="post" style="width: 50%;">
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name" name="masala" required value="Masala">
+            <label for="floatingInput">Masala name</label>
+        </div>
+
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name" name="url" required value="Masala">
+            <label for="floatingInput">Image url</label>
+        </div>
+
+        
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingInput" placeholder="a" name="price" required value="1">
+            <label for="floatingInput">price</label>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-primary">Add prodect </button>
+
+    </form>
+</div>
+
+
+{%endblock%}

@@ -1,0 +1,46 @@
+{%extends 'layout.html'%}
+{%block content%}
+<div class="container m-1">
+
+    <form action="/" method="post" style="width: 50%;">
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name" name="masala" required value="Masala">
+            <label for="floatingInput">Masala name</label>
+        </div>
+
+        
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="name" name="name" required value="name">
+            <label for="floatingInput">Full name</label>
+        </div>
+
+
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="gmail"
+                required value="name@example.com">
+            <label for="floatingInput">Email address</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="a" name="number" required value="787676543">
+            <label for="floatingInput">Contact number</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="number" class="form-control" id="floatingInput" placeholder="a" name="quantity" required value="1">
+            <label for="floatingInput">Quantity</label>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="a" name="address" required value="An address is a collection of information, presented in a mostly fixed format, used to give the location of a building, apartment, or other structure or a plot of land, generally using political boundaries">
+            <label for="floatingInput">Delivery Addres</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Place Order </button>
+
+    </form>
+</div>
+
+
+{%endblock%}

@@ -228,6 +228,7 @@ router.post("/send_money", (req, res) => {
 
         }
         catch (err) {
+            
             res.redirect("transaction/Receiver  account invalied/0")
         }
     })
